@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="jquery-1.11.1.min.js"> </script>
+	<style>
+		div, span, p {
+			width: 140px;
+			height: 140px;
+			margin: 5px;
+			background: #aaa;
+			border: #000 1px solid;
+			float: left;
+			font-size: 17px;
+			font-family: Verdana;
+		}
+		
+		div.mini {
+			width: 55px;
+			height: 55px;
+			background-color: #aaa;
+			font-size: 12px;
+		}
+		
+		div.hide {
+			display: none;
+		}
+	</style>
+	
+</head>
+<body>
+	<div class="one" id="one">
+		id=one,class=one的div
+		<div class="mini">class:mini</div>
+	</div>
+	<div class="one" id="two" title="test">
+		id:two, class: one, title为test的div
+		<div class="mini" title="other">class为mini，title为other</div>
+		<div class="mini" title="test">class为mini，title为other</div>
+	</div>
+	<div class="one">
+		<div class="mini">class:mini</div>
+		<div class="mini">class:mini</div>
+		<div class="mini">class:mini</div>
+		<div class="mini"></div>
+	</div>
+	<div class="one">
+		<div class="mini">class:mini</div>
+		<div class="mini">class:mini</div>
+		<div class="mini">class:mini</div>
+		<div class="mini" title="tesst">class:mini,title: tesst</div>
+	</div>
+		<div style="visibility: hidden;" class="none">style的display为"none"的div</div>
+		<div class="hide">class为"hide"的div</div>
+			<div>
+				包含input的type为"hidden"的div
+				<input type="hidden" size="8"/>
+			</div>
+			<span id="mover">正在执行动画的span</span>
+	</div>
+	
+	
+	<form action="#" id="form1">
+		可用元素：<input type="text" name="add" value="可用文本框"/> <br/></input>
+		不可用元素: <input type="text" name="email" disabled="disabled" value="不可用文本框"><br/></input>
+		可用元素：<input type="text" name="che" value="可用文本框"/> <br/></input>
+		不可用元素: <input type="text" name="name" disabled="disabled" value="不可用文本框"><br/></input>
+		多选框： <br/>
+		<input type="checkbox" name="newsletter" checked="checked" value="test1"/> test1
+		<input type="checkbox" name="newsletter" value="test2"/>test2
+		<input type="checkbox" name="newsletter" value="test3"/>test3
+		<input type="checkbox" name="newsletter" checked="checked" value="test4"/>test4
+		<input type="checkbox" name="newsletter" value="test5"/>test5
+		<div><input type="text"  id="choose"></input></div>
+		<br><br>
+		下拉列表1： <br>
+		<select name="test" multiple="multiple" style="height:100px" id="">
+			<option value="">浙江</option>
+			<option value="" selected="selected">湖南</option>
+			<option value="">北京</option>
+			<option value="" selected="selected">天津</option>
+			<option value="">广州</option>
+			<option value="">湖北</option>
+		</select>
+		
+		<br><br>
+		下拉列表2： <br>
+		<select name="test2" >
+			<option value="">浙江</option>
+			<option value="">湖南</option>
+			<option value="" selected="selected">北京</option>
+			<option value="">天津</option>
+			<option value="">广州</option>
+			<option value="">湖北</option>
+		</select>		
+	</form>
+</body>
+
+<script>
+	$(function(){
+//优先级是按照代码顺序的
+
+//基本选择器
+//		$('div').css("background","red");
+//		$('#one').css("background","#bbffaa");		
+//		$('.mini').css("background","#bbffaa");
+//		$('*').css("background","#bbffaa");
+//		$('span, #two').css("background","#bbffaa");
+
+
+
+////层次选择器
+//		$('body div').css("background","#bbffaa");
+////	就是子选择器的原理，选择 直接 子类
+//		$('body > div').css("background","#bbffaa");
+////	相邻选择器, .one挨着的div元素
+//		$('.one + div').css("background","#bbffaa");
+//		$(".one").next("div").css("background","#bbffaa");
+//		兄弟选择器 two的之后的所有兄弟div		
+//		$('#two ~ div').css("background","#bbffaa");
+//		$("#two").nextAll("div").css("background","#bbffaa");
+////	选择two的所有兄弟div，无论之前之后
+//		$("#two").siblings("div").css("background","#bbffaa");
+
+
+//过滤选择器
+//1.基本过滤选择器
+//		$('div:first').css("background","#bbffaa");
+//		$('div:last').css("background","#bbffaa");
+//		$('div:not(.one)').css("background","#bbffaa");
+//		$('div:even').css("background","#bbffaa");
+//		$('div:odd').css("background","#bbffaa");
+//		$('div:eq(3)').css("background","#bbffaa");
+//		$('div:gt(3)').css("background","#bbffaa");
+//		$('div:lt(3)').css("background","#bbffaa");
+//		$(':header').css("background","#bbffaa");
+//		$(':animated').css("background","#bbffaa");
+		
+//2.内容过滤选择器，中文不行？
+//		$("div:contains('正在')").css("background","#bbffaa");
+//		$("div:empty").css("background","#bbffaa");
+		//改变包含有class=mini的元素的div
+//		$('div:has(.mini)').css("background","red");
+		//含有子元素或者文本,和empty相反
+//		$('div:parent').css("background","red");
+		
+//3.可见性过滤选择器
+//包含display:none, type="hidden", 。 骗人，type="hidden"不包括
+//. An element is assumed to be hidden if it or any of its parents consumes no space in the document. 
+//		$('div:visible').css("background","red");
+//		$('input:hidden').show(3000);
+
+//4.属性过滤选择器
+//		$('div[title]').css("background","#bbffaa");
+//		//包含没有title属性的div
+//		$('div[title!=test]').css("background","#bbffaa");
+//		//begin with
+//		$('div[title^=te]').css("background","#bbffaa");
+//		//end with
+//		$('div[title$=est]').css("background","#bbffaa");
+//		//include es
+//		$('div[title*=es]').css("background","#bbffaa");
+//		$('div[id][title*=es]').css("background","#bbffaa");
+
+//5.子元素选择器
+//		$('div.one :nth-child(2)').css("background","#bbffaa");
+//		$('div.one :first-child').css("background","#bbffaa");
+//		$('div.one :last-child').css("background","#bbffaa");
+//		$('div.one :only-child').css("background","#bbffaa");
+
+//表单选择器
+		$("#form1 input:enabled").val("这里变化");
+		$("#form1 input:disabled").val("那里变化");
+//		$("#choose").val("test");
+		$("#choose").val("test"+$("input:checked").length);
+
+	});
+</script>
+
+</html>
+	
