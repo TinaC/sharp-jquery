@@ -47,23 +47,46 @@
 		$category.hide();
 		
 		var $toggleBtn = $('div.showmore > a');
-		$toggleBtn.click(function(){
-			
-			if($category.is(":visible")){
+		
+		$toggleBtn.toggle(function(){
 				$category.hide();
 			
 				$('.showmore a span')
 				.text("显示显示品牌");
 				
-				$('ul li').removeClass("promoted");
-			}else {
+				$('ul li').filter(":contains('佳能'),:contains('尼康'),:contains('奥林巴斯')")
+				.removeClass("promoted");
+		},function(){
 				$category.show();
 				$('.showmore a span').text("精简显示品牌");
 				//我也是醉了，把条件写错了以下的代码都不能执行，也不会return false，就会直接跳转，关键是没有报错。
 				$('ul li').filter(":contains('佳能'),:contains('尼康'),:contains('奥林巴斯')")
 				.addClass("promoted");
-			}
+			})
 					return false; //让浏览器认为用户没有单击该超链接，从而阻止该超链接跳转	
+	});		
+		
+		
+		
+//		$toggleBtn.click(function(){
+//			
+//			if($category.is(":visible")){
+//				$category.hide();
+//			
+//				$('.showmore a span')
+//				.text("显示显示品牌");
+//				
+//				$('ul li').filter(":contains('佳能'),:contains('尼康'),:contains('奥林巴斯')")
+//				.removeClass("promoted");
+//			}else {
+//				$category.show();
+//				$('.showmore a span').text("精简显示品牌");
+//				//我也是醉了，把条件写错了以下的代码都不能执行，也不会return false，就会直接跳转，关键是没有报错。
+//				$('ul li').filter(":contains('佳能'),:contains('尼康'),:contains('奥林巴斯')")
+//				.addClass("promoted");
+//			}
+//					return false; //让浏览器认为用户没有单击该超链接，从而阻止该超链接跳转	
+//	});
 	});
 </script>
 

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="jquery-1.11.1.min.js"> </script>
+</head>
+<body>
+	<p title="选择你最喜欢的水果">你最喜欢的水果是？</p>
+	<ul>
+		<li title='苹果'>苹果</li>
+		<li title='juzi'>橘子</li>
+		<li title='菠萝'>菠萝</li>
+	</ul>
+</body>
+</html>
+<script>
+	$(function(){
+	// // 3.2.1查找节点
+	// 	// 1.查找元素节点
+	// 	var $li = $("ul li:eq(1)");
+	// 	var li_text = $li.text();
+	// 	console.log(li_text);
+
+	// 	// 2.查找属性节点
+	// 	var $para = $("p");
+	// 	var p_txt = $para.attr("title");
+	// 	console.log(p_txt);
+
+	// // 3.2.2创建节点
+	// 	// 1.创建元素节点
+	// 	//$(html)根据传入的HTML标记字符串，创建一个DOM元素，并将这个DOM对象包装成一个jQuery对象后返回
+	// 	var $li_1 = $("<li></li>");
+	// 	var $li_2 = $("<li></li>");
+	// 	$("ul").append($li_1);
+	// 	$("ul").append($li_2);
+
+	// 	// 2.创建文本节点
+	// 	var $li_1 = $("<li>香蕉</li>");
+	// 	var $li_2 = $("<li>雪梨</li>");
+	// 	$("ul").append($li_1).append($li_2);
+
+	// 	// 3.创建属性节点
+
+	// 	var $li_1 = $("<li title='香蕉'>香蕉</li>");
+	// 	var $li_2 = $("<li title='雪梨'>雪梨</li>");
+	// 	$("ul").append($li_1).append($li_2);
+
+	//  3.2.3插入节点
+		// 元素内部追加
+		$("ul").append("<b>你好<b>");
+		$("<b>appendto<b>").appendTo("ul");
+
+		$("ul").prepend("<b>prepend<b>");
+		$("<b>prependto<b>").prependTo("ul");
+
+		// 元素之后追加
+		$("ul").after("<b>after<b>");
+		$("<b>insertAfter<b>").insertAfter("ul");
+
+		$("ul").before("<b>before<b>");
+		$("<b>insertBefore<b>").insertBefore("ul");
+
+
+
+	});
+</script>
