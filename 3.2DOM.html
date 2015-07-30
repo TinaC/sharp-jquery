@@ -4,14 +4,52 @@
 	<meta charset="UTF-8">
 	<title>Document</title>
 	<script src="jquery-1.11.1.min.js"> </script>
+	<style>
+		.high {
+			font-weight: bold;
+			color: red;
+		}
+
+		.anothor {
+			font-style: italic;
+			color: blue;
+		}
+	</style>
 </head>
 <body>
-	<p title="选择你最喜欢的水果">你最喜欢的水果是？</p>
+	<button id="addclass">addclass</button>
+	<button id="removeclass">删除全部class类</button>
+	<button id="toggleclass">切换样式</button>
+
+	<p title="选择你最喜欢的水果" class="high">你最喜欢的水果是<span>sha</span>？</p>
 	<ul>
-		<li title='苹果'>苹果</li>
+		<li title='苹果'><span>adfadsf</span>苹果</li>
 		<li title='juzi'>橘子</li>
 		<li title='菠萝'>菠萝</li>
 	</ul>
+
+	<input id="address" type="text" value="请输入邮箱地址"/>
+	<input id="password" type="text" value="请输入邮箱密码"/>
+	<input type="button" value="登陆">
+
+	<select name="" id="single">
+		<option selected="selected">选择1号</option>
+		<option>选择2号</option>
+		<option selected="selected">选择3号</option>
+	</select>
+
+	<select multiple="multiple" name="" id="single">
+		<option value="" selected="selected">选择1号</option>
+		<option value="">选择2号</option>
+		<option value="">选择3号</option>
+		<option value="">选择4号</option>
+		<option value="" selected="selected">选择3号</option>
+	</select>
+
+	<input type="checkbox" value="check1">多选1
+
+	<a href="#" title="tishi">hint</a>
+	<a href="#" class="tooltip" title="myhint">hint</a>
 </body>
 </html>
 <script>
@@ -47,21 +85,161 @@
 	// 	$("ul").append($li_1).append($li_2);
 
 	//  3.2.3插入节点
-		// 元素内部追加
-		$("ul").append("<b>你好<b>");
-		$("<b>appendto<b>").appendTo("ul");
+		// // 元素内部追加
+		// $("ul").append("<b>你好<b>");
+		// $("<b>appendto<b>").appendTo("ul");
 
-		$("ul").prepend("<b>prepend<b>");
-		$("<b>prependto<b>").prependTo("ul");
+		// $("ul").prepend("<b>prepend<b>");
+		// $("<b>prependto<b>").prependTo("ul");
 
-		// 元素之后追加
-		$("ul").after("<b>after<b>");
-		$("<b>insertAfter<b>").insertAfter("ul");
+		// // 元素之后追加
+		// $("ul").after("<b>after<b>");
+		// $("<b>insertAfter<b>").insertAfter("ul");
 
-		$("ul").before("<b>before<b>");
-		$("<b>insertBefore<b>").insertBefore("ul");
+		// $("ul").before("<b>before<b>");
+		// $("<b>insertBefore<b>").insertBefore("ul");
 
+		// // 是移动位置，而不是新创建一个对象
+		// var $parent = $("ul");
+		// var $juzi = $("ul li:eq(1)");
+		// $parent.append($juzi);
 
+	// // 3.2.4删除节点
+		// 	// remove删除该节点以及其所包含的所有后代节点
+		// 	var $li = $("ul li:eq(1)").remove();
+		// 	$li.appendTo("ul");
+		// 	$("ul li").remove("li[title!=菠萝]");
+
+		// detach不会吧匹配的元素从jQuery对象中删除，因而可以在将来再使用这些匹配的元素，所有绑定的事件、附加的数据等都会保留下来
+		// $("ul li").click(function(){
+		// 	console.log($(this).html());
+		// })
+		// var $li = $("ul li:eq(1)").detach();
+		// 事件还在
+		// $li.appendTo("ul");
+
+		// // empty清空节点，清空元素中所有后代节点
+		// $("ul li:eq(0)").empty();
+
+	// //3.2.5复制节点
+		// 	$("ul li").click(function(){
+		// 		$(this).clone().appendTo("ul");
+		// 		// 肤质元素的同事肤质元素中所绑定的事件
+		// 		$(this).clone(true).appendTo("ul");
+		// }) 	
+
+	// 3.2.6替换节点
+		// 	// $("p").replaceWith("<strong>你最不喜欢的水果是？</strong>");
+			// $("<strong>你最喜欢的水果是？</strong><p>test</p><strong>你最喜欢的水果是？</strong><strong>你最喜欢的水果是？</strong>").replaceAll("p");
+		
+	// // 3.2.7包裹节点
+		// 	// 将所有元素进行单独包裹
+		// 	$("strong").wrap("<b></b>");
+		// 	// 将所有匹配的元素用一个元素来包裹
+		// // $("strong").wrapAll("<b></b>");
+		// $("strong").wrapInner("<b></b>");
+
+	// // 3.2.8属性操作
+		// // 获取属性和设置属性（getter & setter）
+		// var $para = $("p");
+		// var v_txt = $para.attr("title");
+
+		// $para.attr("title" , "your title");
+		// $para.attr({"title" : "your title" , "name" : "test"});
+
+		// // 删除属性
+		// $para.removeAttr("title");
+
+	// 3.2.9样式操作
+		// // 1.获取样式和设置样式
+		// var p_class = $("p").attr("class");
+		// $("p").attr("class","high");
+
+		// // 2.追加样式
+		// $("#addclass").click(function(){
+		// 	$("p").addClass("another");
+		// })
+
+		// // 3.删除样式
+		// $("#removeclass").click(function(){
+		// 	$("p").removeClass("another high");
+		// })
+
+		// 4.切换样式
+		// $("#toggleclass").click(function(){
+		// 	$("p").toggleClass("another");
+		// })
+
+		// $("#toggleclass").click(function(){
+		// 	$("p").toggle(1000);
+		// })
+
+		// 5.判断是否含有某个样式
+		// console.log($("p").hasClass("another"));
+
+	// 3.2.10 设置和获取HTML、文本和值
+		// console.log($("p").html());
+		// $("p").html("<b>test<b>")
+
+		// console.log($("p").text());
+
+		// $("#address").focus(function(){
+		// 	// if($(this).val()=="请输入邮箱地址"){
+		// 	if($(this).val()==this.defaultValue){
+		// 		$(this).val("");
+		// 	}
+		// });
+		// $("#address").blur(function(){
+		// 	if($(this).val()==""){
+		// 		$(this).val("请输入邮箱地址");
+		// 	}
+		// });
+
+		// $("#single").val("选择3号");
+		// $("#multiple").val(["选择3号","选择2号"]);
+
+	// 3.2.11 遍历节点
+		// console.log($("ul").children());
+		// console.log(($("ul").children())[1].innerHTML);
+		// // 方法返回的时候去掉了结果中包裹的标签
+		// console.log($("p").next().html());
+		// console.log($("ul").prev().html());
+		// console.log($("p").siblings().html());
+
+	// 3.2.12 CSS=DOM
+		// console.log($("p").css()); //这句会报错，一定要指定css的值
+		// console.log($("p").css("color"));
+		// console.log($("p").css("color","blue"));
+		// console.log($("p").css({"color":"black","backgroundcolor":"#eee"}));
+		// console.log($("p").css("height"));
+		// console.log($("p").height());
+		// console.log($("p").height(100));
+		// console.log($("p").width());
+		// console.log($("p").width(100));
+
+		// var offset = $("p").offset();
+		// console.log(offset.left);
+		// console.log(offset.right);
+
+		// var position = $("p").position();
+		// console.log(position.left);
+		// console.log(position.right);
+	
+		// console.log($("p").scrollTop());
+		// console.log($("p").scrollLeft());
+
+		// pageX() 属性是鼠标指针的位置，相对于文档的左边缘。
+		$("a .tooltip").mouseover(function(e){
+			var tooltip = "<<div id='tooltip'>" + this.title + "</div>";
+			$("body").append(tooltip);
+			$("#tooltip")
+				.css({
+					"top": e.pageY + "px",
+					"left": e.pageX + "px"
+				}).show("fast");
+		}).mouseover(function(){
+
+		})
 
 	});
 </script>
