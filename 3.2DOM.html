@@ -257,8 +257,15 @@ $("#tooltip")
 			console.log("mouseout");
 
 			this.title = this.myTitle;
-			
+
 			$("#tooltip").remove();
+		}).mousemove(function(e){
+			// 随着鼠标移动
+			$("#tooltip")
+				.css({
+					"top": (e.pageY+y) + "px",
+					"left": (e.pageX+x) + "px"
+				});
 		})
 
 	});

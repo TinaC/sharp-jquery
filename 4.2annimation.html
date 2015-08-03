@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>MouseOver / MouseOut vs. MouseEnter / MouseLeave</title>
+
+    <style type="text/css">
+        #outer-mouseover {
+            background-color: #F0F0F0 ;
+            border: 1px solid #D0D0D0 ;
+            float: left ;
+            height: 225px ;
+            margin-right: 20px ;
+            position: relative ;
+            width: 225px ;
+            top: 50px;
+            }
+        #outer-mouseenter {
+            background-color: #F0F0F0 ;
+            border: 1px solid #D0D0D0 ;
+            float: left ;
+            height: 225px ;
+            position: relative ;
+            width: 225px ;
+            }
+        span.inner {
+            background-color: #B3C9DF ;
+            border: 1px solid #6492BF ;
+            color: #FFFFFF ;
+            height: 100px ;
+            left: 62px ;
+            line-height: 98px ;
+            position: absolute ;
+            text-align: center ;
+            top: 62px ;
+            width: 100px ;
+            }
+    </style>
+    <script src="jquery-1.11.1.min.js"> </script>
+
+</head>
+<body>
+
+    <h1>
+        Animation
+    </h1>
+
+    <div id="outer-mouseover">
+        <span class="inner">MouseOver</span>
+    </div>
+
+    <div id="outer-mouseenter">
+        <span class="inner">MouseEnter</span>
+    </div>
+    <script type="text/javascript">
+        //  console.log("fds"); 
+        // $("#outer-mouseover").show(1000);
+        // $("#outer-mouseover").hide(5000);
+
+        // $("#outer-mouseover").fadeIn(5000);
+        // $("#outer-mouseover").fadeOut(5000);
+
+        // $("#outer-mouseover").slideUp("slow");
+        // $("#outer-mouseover").slideDown(5000);
+
+        // $('#outer-mouseover').click(function(){
+            // $(this).animate({top:"60px"},1000);
+            // $(this).animate({top:"+=60px"},1000);
+            // $(this).animate({top:"60px",height:"200px"},1000);
+
+            // // 动画队列
+            // $(this).animate({height:"200px",left:"400px",top:"60px",opacity:"1",position:"fixed"},1000)
+            //         .animate({height:"200px",width:"200px"},1000)
+            //         // .css不在动画队列中，是立即执行
+            //         .css("border","10px solid blue");
+
+            // // 回调函数
+            // $(this).animate({height:"200px",left:"400px",top:"60px",opacity:"1",position:"fixed"},1000)
+            //         .animate({height:"200px",width:"200px"},1000,function(){
+            //             $(this).css("border","10px solid blue");
+            //         })
+            // });
+
+            $( "#outer-mouseover" ).hover(
+              function() {
+                console.log("mouseenter");
+                // stop([clearQueue],[gotoEnd]),把当前元素接下来尚未执行完的动画队列都清空，让正在执行的动画直接到达借宿时刻的状态
+                $( this ).stop(true,true)//结束当前增在进行的动画，并立即执行队列中的一个动画
+                 .animate({height:"200px",width:"200px"},2000);
+              }, function() {
+                 console.log("mouseleave");
+                $( this ).stop()
+
+                .delay(2000)
+                .animate({height:"2200",width:"660"},2000);
+              }
+            );
+
+            // //判断元素是否正处于动画状态
+            // if(!$(element).is(":annimated")){
+            // }
+
+            $('#outer-mouseenter').click(function(){
+                $(this).toggle();
+            });
+
+    </script>
+</body>
+</html>
