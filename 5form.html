@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="jquery-1.11.1.min.js"> </script>
+</head>
+ <script src="jquery-1.11.1.min.js"> </script>
+<div class="msg">
+	<div class="msg_caption">
+		<span class="bigger">放大</span>
+		<span class="smaller">缩小</span>
+	</div>
+	<div>
+		<p id="para">
+			testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest
+		</p>
+	</div>
+</div>
+
+<script>
+	$(function(){
+		$("span").click(function() {
+			var thisEle = $("#para").css("font-size"); //16px
+			// parseFloat() 函数可解析一个字符串，并返回一个浮点数。
+			console.log(thisEle);
+			var textFontSize = parseFloat(thisEle,2);//16
+			console.log(textFontSize);
+			var unit = thisEle.slice(-2);
+			console.log(unit);//px
+			var cName = $(this).attr("class");
+			if(cName == "bigger") {
+				if(textFontSize <= 22) 
+					textFontSize += 2;
+			}else if(cName == "smaller") {
+				if(textFontSize >= 12)
+					textFontSize -= 2;
+			}
+
+			$("#para").css("font-size",textFontSize + unit);
+
+		})
+	})
+</script>
+</html>
